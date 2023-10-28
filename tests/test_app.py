@@ -1,6 +1,7 @@
 import unittest
 from app import app
 
+
 class TestApp(unittest.TestCase):
 
     def setUp(self):
@@ -11,6 +12,7 @@ class TestApp(unittest.TestCase):
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'Welcome to capstone project 1', response.data)
+
 
 if __name__ == '__main__':
     unittest.main()
