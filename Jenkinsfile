@@ -22,7 +22,7 @@ node("python&&docker") {
     stage('Push to Docker Hub') {
         withCredentials([usernamePassword(credentialsId: 'dockerhub_credentials', passwordVariable: 'docker_password', usernameVariable: 'docker_username')]) {
             sh """
-                docker login "$docker_username" "$docker_password"  https://registry.hub.docker.com
+                docker login -u "$docker_username" -p "$docker_password" 
                 docker push "$image_tag"
             """
         }
