@@ -7,9 +7,7 @@ We have
 3. Jenkinsfile - CI/CD for the app. This builds the image and push to (dockerhub repo)[https://hub.docker.com/repository/docker/devopsfarm/kloudlab-capstone-flaskapp/general]. additionally, It deploys the new docker image to ec2 instance.
 4. .github/workflows/python-app.yml -  github action to run SCA, Linting and tests for each PR on main branch.
 
-
-
-# 
+![Alternative Text](ci-cd-flask-app.drawio.svg)
 
 This is a simple web application built with Flask, a lightweight Python web framework. The application serves as a template for creating basic web applications using Flask.
 
