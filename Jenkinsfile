@@ -29,7 +29,7 @@ node("python&&docker") {
     }
 
     stage("deploy app"){
-        build "deploy_flask_app"
+        build "deploy-flask-app"
     }
           
 }
