@@ -1,5 +1,5 @@
 node("python&&docker") {
-    def app
+    def image_tag="devopsfarm/kloudlab-capstone-flaskapp:${env.BUILD_ID}"
 
     stage('Clone repository') {
         checkout scmGit(branches: [[name: '*/main']], 
@@ -7,17 +7,27 @@ node("python&&docker") {
                         userRemoteConfigs: [[url: 'https://github.com/kloudlab-trainings/capstone-project1.git']])
     }
 
-    stage('Build Docker image') {   
-        app = docker.build("devopsfarm/kloudlab-capstone-flaskapp:${env.BUILD_ID}")
+    stage('Build Docker image') {
+        sh """
+            docker build -t "$image_tag" .
+            """
     }
  
     stage('Run Tests') {
-        sh 'pip install -r requirements.txt' // Install project dependencies
-        sh 'python -m unittest discover -s tests' // Run tests
+        sh """
+            pip install -r requirements.txt 
+            python -m unittest discover -s tests
+            """
     }
     stage('Push to Docker Hub') {
-        withDockerRegistry([credentialsId: 'dockerhub_credentials', url: 'https://registry.hub.docker.com']) {
-            app.push()
-        }
+        sh """
+            docker login "$docker_username" "$docker_password"  https://registry.hub.docker.com
+            docker push "$image_tag"
+           """
     }
+
+    stage("deploy app"){
+        build "deploy_flask_app"
+    }
+          
 }
