@@ -1,4 +1,4 @@
-node("python-docker") {
+node {
     def app
 
     stage('Clone repository') {
