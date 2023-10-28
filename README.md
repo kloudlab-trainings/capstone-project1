@@ -1,4 +1,4 @@
-# capstone-project1
+# Capstone Project 1 - Flask Web Application
 In this project, We will see how a complete CI/CD works for flask app. 
 
 We have 
@@ -9,7 +9,7 @@ We have
 
 
 
-# Flask Web Application
+# 
 
 This is a simple web application built with Flask, a lightweight Python web framework. The application serves as a template for creating basic web applications using Flask.
 
@@ -79,4 +79,3 @@ Please make sure to update tests as appropriate.
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-```
