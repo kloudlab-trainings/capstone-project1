@@ -29,7 +29,8 @@ node("python&&docker") {
     }
 
     stage("deploy app"){
-        build "deploy-flask-app"
+        build job: 'deploy-flask-app', 
+        parameters: [string(name: 'IMAGE_TAG', value: "${env.BUILD_ID}")]
     }
           
 }
