@@ -20,10 +20,12 @@ node("python&&docker") {
             """
     }
     stage('Push to Docker Hub') {
-        sh """
-            docker login "$docker_username" "$docker_password"  https://registry.hub.docker.com
-            docker push "$image_tag"
-           """
+        withCredentials([usernamePassword(credentialsId: 'dockerhub_credentials', passwordVariable: 'docker_password', usernameVariable: 'docker_username')]) {
+            sh """
+                docker login "$docker_username" "$docker_password"  https://registry.hub.docker.com
+                docker push "$image_tag"
+            """
+        }
     }
 
     stage("deploy app"){
