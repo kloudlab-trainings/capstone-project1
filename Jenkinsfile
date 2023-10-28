@@ -2,7 +2,9 @@ node {
     def app
 
     stage('Clone repository') {
-        git 'https://github.com/kloudlab-trainings/capstone-project1.git'
+        checkout scmGit(branches: [[name: '*/main']], 
+                        extensions: [], 
+                        userRemoteConfigs: [[url: 'https://github.com/kloudlab-trainings/capstone-project1.git']])
     }
 
     stage('Build Docker image') {   
