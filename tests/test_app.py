@@ -11,7 +11,7 @@ class TestApp(unittest.TestCase):
     def test_index(self):
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'Welcome to capstone project 1', response.data)
+        self.assertIn(b'Welcomeo to capstone project 1', response.data)
 
 
 if __name__ == '__main__':
